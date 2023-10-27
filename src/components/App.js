@@ -24,10 +24,6 @@ const App = () => {
       .then((data) => setMovies(data.Search));
   };
 
-  fetch("url") //api for the get request
-    .then((response) => response.json())
-    .then((data) => console.log(data));
-
   return (
     <div className="app">
       <h1>Search For Movies</h1>
