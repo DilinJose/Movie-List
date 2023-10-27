@@ -1,4 +1,4 @@
-import '../assets/style/style.css';
+import "../assets/style/style.css";
 
 import React, { useState, useEffect } from "react";
 
@@ -15,11 +15,18 @@ const App = () => {
   }, []);
 
   const searchMovies = async (title) => {
-    const response = await fetch(`${API_URL}&s=${title}`);
-    const data = await response.json();
+    // const response = await fetch(`${API_URL}&s=${title}`)
+    // const data = await response.json();
+    // setMovies(data.Search);
 
-    setMovies(data.Search);
+    await fetch(`${API_URL}&s=${title}`)
+      .then((res) => res.json())
+      .then((data) => setMovies(data.Search));
   };
+
+  fetch("url") //api for the get request
+    .then((response) => response.json())
+    .then((data) => console.log(data));
 
   return (
     <div className="app">
@@ -31,8 +38,9 @@ const App = () => {
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder="Search for movies"
         />
-        <button className="btn-search" onClick={() => searchMovies(searchTerm)}>Search</button>
-    
+        <button className="btn-search" onClick={() => searchMovies(searchTerm)}>
+          Search
+        </button>
       </div>
 
       {movies?.length > 0 ? (
